@@ -1,0 +1,65 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace 'ir.shahabazimi.livecoding'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "ir.shahabazimi.livecoding"
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+    kotlinOptions {
+        jvmTarget = '21'
+    }
+    kotlin {
+        jvmToolchain(21)
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // Module dependencies
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    // Navigation Component
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+
+    // Lifecycle, Coroutines, ViewModel
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.kotlinx.coroutines.android
+
+    // Koin for DI
+    implementation libs.koin.android
+}

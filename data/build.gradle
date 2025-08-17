@@ -1,0 +1,29 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'ir.shahabazimi.data'
+    compileSdk 36
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21' // Or your desired JVM target
+    }
+}
+
+dependencies {
+    implementation project(":domain")
+
+    // Retrofit & Gson for networking
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.logging.interceptor
+
+    implementation libs.koin.core
+}
